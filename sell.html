@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create New Listing</title>
+    <link href="./output.css" rel="stylesheet" />
+  </head>
+  <body class="bg-white text-darkText">
+    <!-- Header Section -->
+    <header class="flex justify-between items-center p-6 bg-white shadow-md">
+      <div class="text-3xl font-bold text-darkText">LOGO</div>
+      <nav class="space-x-6">
+        <a href="listings.html" class="hover:text-gray-500">Listings</a>
+        <a href="buy.html" class="hover:text-gray-500">Buy</a>
+        <button id="sellButton" class="hover:text-gray-500">Sell</button>
+      </nav>
+      <button class="bg-lightBrown text-white px-4 py-2 rounded-md">Logout</button>
+    </header>
+
+    <!-- Modal -->
+    <div
+      id="sellModal"
+      class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center hidden"
+    >
+      <div class="bg-beige p-8 rounded-lg w-full max-w-md">
+        <h2 class="text-2xl font-semibold text-center mb-6">Create new listing</h2>
+        <form>
+          <div class="mb-4">
+            <label for="title" class="block text-lg mb-2">Title</label>
+            <input
+              type="text"
+              id="title"
+              placeholder="Insert title"
+              class="w-full bg-olive text-darkText border rounded-md p-2"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="description" class="block text-lg mb-2">Description</label>
+            <textarea
+              id="description"
+              placeholder="Description"
+              class="w-full bg-olive text-darkText border rounded-md p-2"
+            ></textarea>
+          </div>
+          <div class="mb-4">
+            <label for="media" class="block text-lg mb-2">Media (url)</label>
+            <input
+              type="text"
+              id="media"
+              placeholder="Media URL"
+              class="w-full bg-olive text-darkText border rounded-md p-2"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="endDate" class="block text-lg mb-2">End date</label>
+            <input
+              type="date"
+              id="endDate"
+              class="w-full bg-olive text-darkText border rounded-md p-2"
+            />
+          </div>
+          <div class="text-center">
+            <button
+              type="button"
+              id="publishButton"
+              class="bg-lightBrown text-white px-4 py-2 rounded-md"
+            >
+              Publish
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // JavaScript for Modal Toggle
+      const sellButton = document.getElementById('sellButton');
+      const sellModal = document.getElementById('sellModal');
+      const publishButton = document.getElementById('publishButton');
+
+      // Show Modal
+      sellButton.addEventListener('click', () => {
+        sellModal.classList.remove('hidden');
+      });
+
+      // Hide Modal
+      publishButton.addEventListener('click', () => {
+        sellModal.classList.add('hidden');
+        alert('Listing Created!');
+      });
+
+      // Hide Modal when clicking outside
+      sellModal.addEventListener('click', (e) => {
+        if (e.target === sellModal) {
+          sellModal.classList.add('hidden');
+        }
+      });
+    </script>
+  </body>
+</html>

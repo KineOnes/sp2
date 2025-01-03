@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listings</title>
+    <link href="./output.css" rel="stylesheet" />
+  </head>
+  <body class="bg-white text-darkText">
+    <!-- Header Section -->
+    <header class="flex justify-between items-center p-6 bg-white shadow-md max-w-screen-md mx-auto px-12">
+      <div class="text-3xl font-bold text-darkText">LOGO</div>
+      <nav class="space-x-6">
+        <a href="#" class="hover:text-gray-500">Listings</a>
+        <a href="#" class="hover:text-gray-500">Buy</a>
+        <a href="#" class="hover:text-gray-500">Sell</a>
+      </nav>
+      <button class="bg-lightBrown text-white px-4 py-2 rounded-md">Logout</button>
+    </header>
+
+    <!-- Listings Section -->
+    <section class="p-8 max-w-screen-md mx-auto px-12">
+      <div class="bg-beige p-6 rounded-md flex items-center justify-between">
+        <h1 class="text-2xl font-semibold">Listings</h1>
+        <img
+          src="https://via.placeholder.com/300"
+          alt="Banner image"
+          class="rounded-md h-24"
+        />
+      </div>
+    </section>
+
+    <!-- Search Bar -->
+    <section class="flex justify-center p-4 max-w-screen-md mx-auto px-12">
+      <div class="relative w-full max-w-xl">
+        <input
+          type="text"
+          placeholder="What are you looking for?"
+          class="w-full bg-olive text-darkText border rounded-md p-2 pl-10"
+        />
+        <span class="absolute left-3 top-2.5 text-gray-700">🔍</span>
+      </div>
+    </section>
+
+    <!-- Listings Grid -->
+    <section class="p-8 max-w-screen-md mx-auto px-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <!-- Example Card -->
+        <div class="bg-beige p-4 rounded-md shadow-md">
+          <div class="h-32 bg-gray-300 rounded-md mb-4"></div>
+          <h3 class="text-lg font-medium mb-2">"Title"</h3>
+          <div class="flex justify-between items-center">
+            <button class="bg-lightBrown text-white px-4 py-2 rounded-md">
+              Bid
+            </button>
+            <span class="text-sm text-gray-500">Time left: 9d 8h 49m 3s</span>
+          </div>
+        </div>
+
+        <!-- Duplicate the card for grid layout -->
+        <div class="bg-beige p-4 rounded-md shadow-md">
+          <div class="h-32 bg-gray-300 rounded-md mb-4"></div>
+          <h3 class="text-lg font-medium mb-2">"Title"</h3>
+          <div class="flex justify-between items-center">
+            <button class="bg-lightBrown text-white px-4 py-2 rounded-md">
+              Bid
+            </button>
+            <span class="text-sm text-gray-500">Time left: 9d 8h 49m 3s</span>
+          </div>
+        </div>
+
+        <!-- Repeat Cards -->
+        <div class="bg-beige p-4 rounded-md shadow-md">
+          <div class="h-32 bg-gray-300 rounded-md mb-4"></div>
+          <h3 class="text-lg font-medium mb-2">"Title"</h3>
+          <div class="flex justify-between items-center">
+            <button class="bg-lightBrown text-white px-4 py-2 rounded-md">
+              Bid
+            </button>
+            <span class="text-sm text-gray-500">Time left: 9d 8h 49m 3s</span>
+          </div>
+        </div>
+
+        <!-- Example continues for each item -->
+        <div class="bg-beige p-4 rounded-md shadow-md">
+          <div class="h-32 bg-gray-300 rounded-md mb-4"></div>
+          <h3 class="text-lg font-medium mb-2">"Title"</h3>
+          <div class="flex justify-between items-center">
+            <button class="bg-lightBrown text-white px-4 py-2 rounded-md">
+              Bid
+            </button>
+            <span class="text-sm text-gray-500">Time left: 9d 8h 49m 3s</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
