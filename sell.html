@@ -8,22 +8,20 @@
   </head>
   <body class="bg-white text-darkText">
     <!-- Header Section -->
-    <header class="flex justify-between items-center p-6 bg-white shadow-md">
-      <div class="text-3xl font-bold text-darkText">LOGO</div>
-      <nav class="space-x-6">
-        <a href="listings.html" class="hover:text-gray-500">Listings</a>
-        <a href="buy.html" class="hover:text-gray-500">Buy</a>
-        <button id="sellButton" class="hover:text-gray-500">Sell</button>
-      </nav>
-      <button class="bg-lightBrown text-white px-4 py-2 rounded-md">Logout</button>
-    </header>
+    <header class="flex justify-between items-center p-6 bg-white shadow-md max-w-screen-lg mx-auto">
+        <div class="text-3xl font-bold text-darkText"><a href="index.html">LOGO</a></div>      <nav class="space-x-6">
+          <a href="listings.html" class="hover:text-gray-500">Listings</a>
+          <a href="sell.html" class="hover:text-gray-500">Sell</a>
+          <a href="profile.html" class="hover:text-gray-500">Profile</a>
+        </nav>
+        <button class="bg-lightBrown text-white px-4 py-2 rounded-md">
+          Register/Login
+        </button>
+      </header>
 
-    <!-- Modal -->
-    <div
-      id="sellModal"
-      class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center hidden"
-    >
-      <div class="bg-beige p-8 rounded-lg w-full max-w-md">
+    <!-- Create Listing Section -->
+    <section class="p-8 max-w-screen-lg mx-auto">
+      <div class="bg-beige p-8 rounded-lg">
         <h2 class="text-2xl font-semibold text-center mb-6">Create new listing</h2>
         <form>
           <div class="mb-4">
@@ -71,31 +69,16 @@
           </div>
         </form>
       </div>
-    </div>
+    </section>
 
     <script>
-      // JavaScript for Modal Toggle
-      const sellButton = document.getElementById('sellButton');
-      const sellModal = document.getElementById('sellModal');
+      // JavaScript for Publish Button
       const publishButton = document.getElementById('publishButton');
 
-      // Show Modal
-      sellButton.addEventListener('click', () => {
-        sellModal.classList.remove('hidden');
-      });
-
-      // Hide Modal
       publishButton.addEventListener('click', () => {
-        sellModal.classList.add('hidden');
         alert('Listing Created!');
-      });
-
-      // Hide Modal when clicking outside
-      sellModal.addEventListener('click', (e) => {
-        if (e.target === sellModal) {
-          sellModal.classList.add('hidden');
-        }
       });
     </script>
   </body>
 </html>
+
