@@ -1,19 +1,28 @@
-// listings.mjs
+console.log('listings.mjs loaded'); // Debugging: Check if the script is running
+
+
+
 async function fetchListings() {
     try {
         const response = await fetch('https://v2.api.noroff.dev/auction/listings'); // Fetch data
         if (!response.ok) {
             throw new Error('Failed to fetch listings');
         }
-        const listings = await response.json(); // Parse JSON
-        renderListings(listings); // Render listings dynamically
+        const result = await response.json(); // Parse JSON
+        console.log('Listings Data:', result); // Debugging: Check fetched listings
+        renderListings(result.data); // Render the "data" array from the API
     } catch (error) {
         console.error('Error fetching listings:', error);
     }
 }
 
+
 function renderListings(listings) {
-    const container = document.querySelector('.grid'); // Grid container
+    const container = document.querySelector('.grid'); // Find the grid container
+    if (!container) {
+        console.error('Grid container not found!');
+        return;
+    }
     if (!listings.length) {
         container.innerHTML = '<p>No listings found.</p>'; // Handle empty listings
         return;
