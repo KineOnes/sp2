@@ -8,47 +8,27 @@
   </head>
   <body class="bg-white text-darkText">
     <!-- Header Section -->
-    <header class="flex justify-between items-center p-6 bg-white shadow-md max-w-screen-lg mx-auto">
-      <div class="text-3xl font-bold text-darkText"><a href="index.html">LOGO</a></div>
-      <nav class="space-x-6">
+    <header class="bg-white shadow-md">
+      <div class="text-5xl font-light text-center py-4">
+        <a href="index.html" class="text-darkText">AGAIN</a>
+      </div>
+      <nav class="flex justify-center space-x-6 pb-4 border-b">
         <a href="listings.html" class="hover:text-gray-500">Listings</a>
         <a href="sell.html" class="hover:text-gray-500">Sell</a>
         <a href="profile.html" class="hover:text-gray-500">Profile</a>
       </nav>
-      <button class="bg-lightBrown text-white px-4 py-2 rounded-md">Register/Login</button>
     </header>
 
     <!-- Listings Section -->
     <section class="p-8 max-w-screen-lg mx-auto">
-      <div class="bg-beige p-6 rounded-md flex items-center justify-between">
-        <h1 class="text-2xl font-semibold">Listings</h1>
-        <img src="https://via.placeholder.com/300" alt="Banner image" class="rounded-md h-24" />
-      </div>
-    </section>
-
-    <!-- Search Bar -->
-    <section class="flex justify-center p-4 max-w-screen-lg mx-auto">
-      <div class="relative w-full max-w-xl">
-        <input
-          type="text"
-          placeholder="What are you looking for?"
-          class="w-full bg-olive text-darkText border rounded-md p-2 pl-10"
-        />
-        <span class="absolute left-3 top-2.5 text-gray-700">🔍</span>
-      </div>
-    </section>
-
-    <!-- Listings Grid -->
-    <section class="p-8 max-w-screen-lg mx-auto">
+      <h1 class="text-3xl font-semibold mb-6">Current Listings</h1>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <!-- Dynamic content will be injected here -->
+        <!-- Dynamic content will go here -->
+        <div class="bg-beige p-4 rounded-md shadow-md text-center">Item 1</div>
+        <div class="bg-beige p-4 rounded-md shadow-md text-center">Item 2</div>
+        <div class="bg-beige p-4 rounded-md shadow-md text-center">Item 3</div>
+        <div class="bg-beige p-4 rounded-md shadow-md text-center">Item 4</div>
       </div>
     </section>
-
-    <script type="module">
-        import { fetchListings } from './src/listings.mjs';
-        fetchListings(); // Call the fetchListings function when the page loads
-      </script>
-      
   </body>
 </html>

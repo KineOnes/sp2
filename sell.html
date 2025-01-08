@@ -3,82 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create New Listing</title>
+    <title>Sell</title>
     <link href="./output.css" rel="stylesheet" />
   </head>
   <body class="bg-white text-darkText">
     <!-- Header Section -->
-    <header class="flex justify-between items-center p-6 bg-white shadow-md max-w-screen-lg mx-auto">
-        <div class="text-3xl font-bold text-darkText"><a href="index.html">LOGO</a></div>      <nav class="space-x-6">
-          <a href="listings.html" class="hover:text-gray-500">Listings</a>
-          <a href="sell.html" class="hover:text-gray-500">Sell</a>
-          <a href="profile.html" class="hover:text-gray-500">Profile</a>
-        </nav>
-        <button class="bg-lightBrown text-white px-4 py-2 rounded-md">
-          Register/Login
-        </button>
-      </header>
-
-    <!-- Create Listing Section -->
-    <section class="p-8 max-w-screen-lg mx-auto">
-      <div class="bg-beige p-8 rounded-lg">
-        <h2 class="text-2xl font-semibold text-center mb-6">Create new listing</h2>
-        <form>
-          <div class="mb-4">
-            <label for="title" class="block text-lg mb-2">Title</label>
-            <input
-              type="text"
-              id="title"
-              placeholder="Insert title"
-              class="w-full bg-olive text-darkText border rounded-md p-2"
-            />
-          </div>
-          <div class="mb-4">
-            <label for="description" class="block text-lg mb-2">Description</label>
-            <textarea
-              id="description"
-              placeholder="Description"
-              class="w-full bg-olive text-darkText border rounded-md p-2"
-            ></textarea>
-          </div>
-          <div class="mb-4">
-            <label for="media" class="block text-lg mb-2">Media (url)</label>
-            <input
-              type="text"
-              id="media"
-              placeholder="Media URL"
-              class="w-full bg-olive text-darkText border rounded-md p-2"
-            />
-          </div>
-          <div class="mb-4">
-            <label for="endDate" class="block text-lg mb-2">End date</label>
-            <input
-              type="date"
-              id="endDate"
-              class="w-full bg-olive text-darkText border rounded-md p-2"
-            />
-          </div>
-          <div class="text-center">
-            <button
-              type="button"
-              id="publishButton"
-              class="bg-lightBrown text-white px-4 py-2 rounded-md"
-            >
-              Publish
-            </button>
-          </div>
-        </form>
+    <header class="bg-white shadow-md">
+      <div class="text-5xl font-light text-center py-4">
+        <a href="index.html" class="text-darkText">AGAIN</a>
       </div>
+      <nav class="flex justify-center space-x-6 pb-4 border-b">
+        <a href="listings.html" class="hover:text-gray-500">Listings</a>
+        <a href="sell.html" class="hover:text-gray-500">Sell</a>
+        <a href="profile.html" class="hover:text-gray-500">Profile</a>
+      </nav>
+    </header>
+
+    <!-- Sell Section -->
+    <section class="p-8 max-w-screen-lg mx-auto">
+      <h1 class="text-3xl font-semibold mb-6">Sell an Item</h1>
+      <form class="space-y-4">
+        <div>
+          <label for="title" class="block text-lg mb-2">Title</label>
+          <input type="text" id="title" placeholder="Item title" class="w-full bg-white border rounded-md p-2" />
+        </div>
+        <div>
+          <label for="description" class="block text-lg mb-2">Description</label>
+          <textarea id="description" rows="4" placeholder="Item description" class="w-full bg-white border rounded-md p-2"></textarea>
+        </div>
+        <div>
+          <label for="image" class="block text-lg mb-2">Image URL</label>
+          <input type="text" id="image" placeholder="Image URL" class="w-full bg-white border rounded-md p-2" />
+        </div>
+        <div>
+          <label for="deadline" class="block text-lg mb-2">Deadline</label>
+          <input type="datetime-local" id="deadline" class="w-full bg-white border rounded-md p-2" />
+        </div>
+        <button type="submit" class="bg-lightBrown text-white px-4 py-2 rounded-md">Submit</button>
+      </form>
     </section>
-
-    <script>
-      // JavaScript for Publish Button
-      const publishButton = document.getElementById('publishButton');
-
-      publishButton.addEventListener('click', () => {
-        alert('Listing Created!');
-      });
-    </script>
   </body>
 </html>
-
