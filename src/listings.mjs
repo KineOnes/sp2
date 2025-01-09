@@ -1,7 +1,5 @@
 console.log('listings.mjs loaded'); // Debugging: Check if the script is running
 
-
-
 async function fetchListings() {
     try {
         const response = await fetch('https://v2.api.noroff.dev/auction/listings'); // Fetch data
@@ -15,7 +13,6 @@ async function fetchListings() {
         console.error('Error fetching listings:', error);
     }
 }
-
 
 function renderListings(listings) {
     const container = document.querySelector('.grid'); // Find the grid container
@@ -40,7 +37,7 @@ function renderListings(listings) {
               <h3 class="text-lg font-medium mb-2">${listing.title}</h3>
               <p class="text-sm text-gray-600">${listing.description || 'No description available'}</p>
               <div class="flex justify-between items-center mt-4">
-                <button class="bg-lightBrown text-white px-4 py-2 rounded-md">
+                <button class="bg-lightBrown text-white px-4 py-2 rounded-md view-btn" data-id="${listing.id}">
                   View
                 </button>
                 <span class="text-sm text-gray-500">
@@ -51,6 +48,15 @@ function renderListings(listings) {
           `
         )
         .join('');
+
+    // Add event listeners to the "View" buttons
+    const viewButtons = document.querySelectorAll('.view-btn');
+    viewButtons.forEach((button) =>
+        button.addEventListener('click', (event) => {
+            const listingId = event.target.getAttribute('data-id');
+            window.location.href = `item.html?id=${listingId}`; // Redirect to item.html with the listing ID
+        })
+    );
 }
 
 fetchListings(); // Call fetchListings when the page loads
