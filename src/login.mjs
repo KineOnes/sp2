@@ -1,26 +1,40 @@
 export async function handleLogin(event) {
-    event.preventDefault();
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    // Get email and password values from the form
     const email = document.querySelector('#email').value;
     const password = document.querySelector('#password').value;
-  
+
     try {
-      const response = await fetch('https://v2.api.noroff.dev/auction/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-  
-      if (!response.ok) {
-        throw new Error('Login failed');
-      }
-  
-      const data = await response.json();
-      localStorage.setItem('accessToken', data.accessToken); // Save token
-      alert('Login successful');
-      window.location.href = 'listings.html';
+        // Send login request to the correct API endpoint
+        const response = await fetch('https://v2.api.noroff.dev/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }), // Send email and password in the request body
+        });
+
+        // Check if the response was not successful
+        if (!response.ok) {
+            const errorData = await response.json(); // Get the error message from the response
+            console.error('Login error:', errorData);
+            alert(errorData.errors[0].message || 'Error logging in. Please try again.'); // Display error message
+            return;
+        }
+
+        // Parse the JSON response
+        const data = await response.json();
+
+        // Save the access token and login state in localStorage
+        localStorage.setItem('accessToken', data.data.accessToken); // Save the token
+        localStorage.setItem('isLoggedIn', 'true'); // Indicate that the user is logged in
+
+        alert('Login successful'); // Notify the user of a successful login
+
+        // Redirect to the listings page or another appropriate page
+        window.location.href = 'listings.html';
     } catch (error) {
-      console.error(error);
-      alert('Error logging in. Please try again.');
+        // Catch and log any unexpected errors
+        console.error('Error logging in:', error);
+        alert('Error logging in. Please try again.'); // Notify the user of an error
     }
-  }
-  
+}
