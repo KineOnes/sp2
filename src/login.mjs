@@ -24,9 +24,10 @@ export async function handleLogin(event) {
         // Parse the JSON response
         const data = await response.json();
 
-        // Save the access token and login state in localStorage
+        // Save the access token, username, and login state in localStorage
         localStorage.setItem('accessToken', data.data.accessToken); // Save the token
         localStorage.setItem('isLoggedIn', 'true'); // Indicate that the user is logged in
+        localStorage.setItem('username', data.data.name); // Save the username for future use
 
         alert('Login successful'); // Notify the user of a successful login
 
