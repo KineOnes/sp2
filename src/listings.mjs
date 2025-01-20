@@ -4,13 +4,20 @@ async function fetchListings() {
     try {
         const response = await fetch('https://v2.api.noroff.dev/auction/listings'); // Fetch data
         if (!response.ok) {
-            throw new Error('Failed to fetch listings');
+            if (response.status === 404) {
+                alert('No listings found. Please try again later.');
+                document.querySelector('.grid').innerHTML = '<p>No listings available.</p>';
+            } else {
+                throw new Error('Failed to fetch listings');
+            }
+            return;
         }
         const result = await response.json(); // Parse JSON
         console.log('Listings Data:', result); // Debugging: Check fetched listings
         renderListings(result.data); // Render the "data" array from the API
     } catch (error) {
         console.error('Error fetching listings:', error);
+        document.querySelector('.grid').innerHTML = '<p>Error loading listings.</p>';
     }
 }
 
@@ -30,7 +37,7 @@ function renderListings(listings) {
             (listing) => `
             <div class="bg-beige p-4 rounded-md shadow-md">
               <img
-                src="${listing.media[0]?.url || 'https://via.placeholder.com/150'}"
+                src="${listing.media?.[0]?.url || 'https://via.placeholder.com/150'}"
                 alt="${listing.title}"
                 class="w-full h-40 object-cover rounded-md mb-4"
               />
@@ -49,12 +56,11 @@ function renderListings(listings) {
         )
         .join('');
 
-    // Add event listeners to the "View" buttons
     const viewButtons = document.querySelectorAll('.view-btn');
     viewButtons.forEach((button) =>
         button.addEventListener('click', (event) => {
             const listingId = event.target.getAttribute('data-id');
-            window.location.href = `item.html?id=${listingId}`; // Redirect to item.html with the listing ID
+            window.location.href = `item.html?id=${listingId}`;
         })
     );
 }

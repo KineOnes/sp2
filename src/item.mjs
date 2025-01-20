@@ -15,7 +15,13 @@ async function fetchListingDetails() {
     try {
         const response = await fetch(`https://v2.api.noroff.dev/auction/listings/${listingId}`);
         if (!response.ok) {
-            throw new Error('Failed to fetch item details');
+            if (response.status === 404) {
+                alert('Listing not found. Please check the URL or try again later.');
+                document.getElementById('item-details').innerHTML = '<p>Error: Listing not found.</p>';
+            } else {
+                throw new Error('Failed to fetch item details');
+            }
+            return;
         }
         const listing = await response.json();
         renderListingDetails(listing);
@@ -26,11 +32,7 @@ async function fetchListingDetails() {
 }
 
 function renderListingDetails(listing) {
-    // If the API response wraps the data in a "data" property
     const listingData = listing.data || listing;
-
-    // Log the listing to confirm structure
-    console.log("Listing Data:", listingData);
 
     const container = document.getElementById('item-details');
 
@@ -39,8 +41,7 @@ function renderListingDetails(listing) {
         return;
     }
 
-    // Safely access media, title, description, and end date
-    const imageUrl = listingData.media && listingData.media.length > 0 ? listingData.media[0].url : 'https://via.placeholder.com/150';
+    const imageUrl = listingData.media?.[0]?.url || 'https://via.placeholder.com/150';
     const title = listingData.title || 'No title available';
     const description = listingData.description || 'No description available.';
     const endDate = listingData.endsAt ? new Date(listingData.endsAt).toLocaleDateString() : 'No end date';

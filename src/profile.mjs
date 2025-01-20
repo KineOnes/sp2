@@ -6,10 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const avatar = document.getElementById('avatar');
 
   try {
-    // Fetch user data
-    const userData = await getUserData();
-
-    // Update the profile section with fetched data
+    const userData = await getUserData(); // Fetch user data
     userName.textContent = userData.name || 'Name Nameson';
     userCredit.textContent = `Total credit: ${userData.credits || 0}`;
     avatar.src = userData.avatar?.url || 'https://via.placeholder.com/150';
