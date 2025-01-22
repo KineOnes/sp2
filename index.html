@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
     <link href="./output.css" rel="stylesheet" />
-    <link rel="icon" href="path-to-your-favicon.ico" />
-
+    <link rel="icon" href="./images/favicon.ico" />
     <script type="module" src="./src/auth.mjs"></script>
-
   </head>
   <body class="bg-white text-darkText">
     <!-- Logo -->
@@ -34,14 +32,14 @@
             Our auction platform connects buyers and sellers, offering a wide range of items to explore.
           </p>
         </div>
-         <!-- Image Section -->
-    <div>
-      <img
-        src="./images/info.webp"
-        alt="Auction illustration"
-        class="rounded-md w-full max-w-xs h-auto object-cover"
-      />
-    </div>
+        <!-- Image Section -->
+        <div>
+          <img
+            src="./images/info.webp"
+            alt="Auction illustration"
+            class="rounded-md w-full max-w-xs h-auto object-cover"
+          />
+        </div>
       </div>
     </section>
 
@@ -60,74 +58,69 @@
     <!-- New Listings Section -->
     <section class="p-8 max-w-screen-lg mx-auto">
       <h2 class="text-3xl font-semibold text-center mb-6">New Listings</h2>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-        <div class="bg-beige h-32 rounded-md"></div>
-        <div class="bg-beige h-32 rounded-md"></div>
-        <div class="bg-beige h-32 rounded-md"></div>
-        <div class="bg-beige h-32 rounded-md"></div>
-        <div class="bg-beige h-32 rounded-md"></div>
-        <div class="bg-beige h-32 rounded-md"></div>
+      <div id="newListingsGrid" class="grid grid-cols-2 md:grid-cols-3 gap-6">
+        <!-- This grid will be populated dynamically by the JavaScript code -->
       </div>
+      <p id="newListingsError" class="hidden text-red-500 text-center mt-4">Error loading new listings.</p>
     </section>
 
     <!-- Modal -->
-<div
-  id="authModal"
-  class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center opacity-0 pointer-events-none transition-opacity duration-300"
->
-  <div class="bg-beige p-8 rounded-lg shadow-lg w-full max-w-md relative">
-    <button
-      id="closeModal"
-      class="absolute top-2 right-2 text-lg font-bold"
+    <div
+      id="authModal"
+      class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center opacity-0 pointer-events-none transition-opacity duration-300"
     >
-      ×
-    </button>
-    <h2
-      id="authModalTitle"
-      class="text-2xl font-semibold mb-4 text-center"
-    >
-      Login
-    </h2>
-    <form id="authForm" class="space-y-4">
-      <div>
-        <label for="email" class="block text-lg mb-2">Email</label>
-        <input
-          type="email"
-          id="email"
-          placeholder="example@stud.noroff.no"
-          class="w-full bg-white text-darkText border rounded-md p-2"
-          required
-        />
+      <div class="bg-beige p-8 rounded-lg shadow-lg w-full max-w-md relative">
+        <button
+          id="closeModal"
+          class="absolute top-2 right-2 text-lg font-bold"
+        >
+          ×
+        </button>
+        <h2
+          id="authModalTitle"
+          class="text-2xl font-semibold mb-4 text-center"
+        >
+          Login
+        </h2>
+        <form id="authForm" class="space-y-4">
+          <div>
+            <label for="email" class="block text-lg mb-2">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="example@stud.noroff.no"
+              class="w-full bg-white text-darkText border rounded-md p-2"
+              required
+            />
+          </div>
+          <div>
+            <label for="password" class="block text-lg mb-2">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Your password"
+              class="w-full bg-white text-darkText border rounded-md p-2"
+              required
+            />
+          </div>
+          <button
+            id="submitButton"
+            type="submit"
+            class="bg-lightBrown text-white px-4 py-2 rounded-md w-full"
+          >
+            Login
+          </button>
+        </form>
+        <p class="text-center mt-4">
+          <span
+            id="toggleAuth"
+            class="text-blue-500 cursor-pointer hover:underline"
+          >
+            Don't have an account? Register
+          </span>
+        </p>
       </div>
-      <div>
-        <label for="password" class="block text-lg mb-2">Password</label>
-        <input
-          type="password"
-          id="password"
-          placeholder="Your password"
-          class="w-full bg-white text-darkText border rounded-md p-2"
-          required
-        />
-      </div>
-      <button
-        id="submitButton"
-        type="submit"
-        class="bg-lightBrown text-white px-4 py-2 rounded-md w-full"
-      >
-        Login
-      </button>
-    </form>
-    <p class="text-center mt-4">
-      <span
-        id="toggleAuth"
-        class="text-blue-500 cursor-pointer hover:underline"
-      >
-        Don't have an account? Register
-      </span>
-    </p>
-  </div>
-</div>
-
+    </div>
 
     <script type="module" src="./src/index.mjs"></script>
   </body>
