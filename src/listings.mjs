@@ -21,7 +21,10 @@ async function fetchListings(page = 1) {
     const result = await response.json();
     console.log("Listings Data:", result); // Debugging: Log the fetched data
 
-    renderListings(result.data); // Pass only the data to render function
+    // Sort listings by creation date (newest first)
+    const sortedListings = result.data.sort((a, b) => new Date(b.created) - new Date(a.created));
+
+    renderListings(sortedListings); // Pass sorted data to render function
     handlePagination(result.meta); // Pass pagination metadata
   } catch (error) {
     console.error("Error fetching listings:", error);
@@ -38,9 +41,7 @@ function renderListings(listings) {
 
   container.innerHTML = listings
     .map((listing) => {
-        const imageUrl = listing.media?.[0]?.url || "/images/placeholder.png"; // Use local placeholder
-
-
+      const imageUrl = listing.media?.[0]?.url || "/images/placeholder.png"; // Use local placeholder
 
       return `
         <div class="bg-beige p-4 rounded-md shadow-md">
