@@ -1,104 +1,104 @@
-console.log('item.mjs loaded'); // Debugging: Check if the script is running
+console.log("item.mjs loaded");
 
-// Get the listing ID from the URL
-const params = new URLSearchParams(window.location.search);
-const listingId = params.get('id');
+// Get the item ID from the URL
+const itemId = new URLSearchParams(window.location.search).get("id");
+console.log("Item ID:", itemId); // Ensure the ID is logged for debugging
 
-if (!listingId) {
-    console.error('No listing ID found in the URL!');
-    document.getElementById('item-details').innerHTML = '<p>Error loading item details.</p>';
-} else {
-    fetchListingDetails();
+const itemContainer = document.querySelector("#item-details");
+const bidForm = document.querySelector("#bid-form");
+const bidInput = document.querySelector("#bidAmount");
+
+// Function to fetch item details from the API
+async function fetchItemDetails() {
+  try {
+    // Check if the item ID is valid
+    if (!itemId) {
+      throw new Error("Invalid or missing item ID in the URL");
+    }
+
+    const response = await fetch(`https://v2.api.noroff.dev/auction/listings/${itemId}?_bids=true`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch item details. Status: ${response.status}`);
+    }
+
+    const { data: item } = await response.json();
+    if (!item) {
+      throw new Error("Item data is empty or malformed");
+    }
+
+    console.log("Fetched Item Details:", item); // Log the details for debugging
+    renderItemDetails(item);
+  } catch (error) {
+    console.error("Error fetching item details:", error);
+    itemContainer.innerHTML = `<p class="text-red-500">Error loading item details. Please try again later.</p>`;
+  }
 }
 
-let highestBid = 0; // Variable to track the highest bid amount
+// Function to render the item details
+function renderItemDetails(item) {
+  const highestBid = item.bids.length ? Math.max(...item.bids.map((bid) => bid.amount)) : 0;
 
-async function fetchListingDetails() {
-    try {
-        const response = await fetch(`https://v2.api.noroff.dev/auction/listings/${listingId}`);
-        if (!response.ok) {
-            if (response.status === 404) {
-                alert('Listing not found. Please try again.');
-            } else {
-                throw new Error('Failed to fetch item details');
-            }
-            return;
-        }
-        const listing = await response.json();
-        renderListingDetails(listing);
-    } catch (error) {
-        console.error('Error fetching item details:', error);
-        document.getElementById('item-details').innerHTML = '<p>Error loading item details.</p>';
-    }
+  // Render item details in the container
+  itemContainer.innerHTML = `
+    <div class="bg-beige p-4 rounded-md shadow-md">
+      <img
+        src="${item.media?.[0]?.url || './images/placeholder.png'}"
+        alt="${item.title || 'No title available'}"
+        class="w-full h-60 object-cover rounded-md mb-4"
+        onerror="this.src='./images/placeholder.png'" <!-- Fallback for inaccessible images -->
+      />
+      <h2 class="text-2xl font-semibold">${item.title || "No Title"}</h2>
+      <p>${item.description || "No description available."}</p>
+      <p><strong>Ends:</strong> ${item.endsAt ? new Date(item.endsAt).toLocaleDateString() : "Invalid Date"}</p>
+      <p><strong>Current highest bid:</strong> ${highestBid}</p>
+    </div>
+  `;
 }
 
-function renderListingDetails(listing) {
-    const listingData = listing.data || listing;
+// Event listener for the bid form
+bidForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
 
-    console.log('Listing Data:', listingData);
+  const bidAmount = parseInt(bidInput.value, 10);
+  if (isNaN(bidAmount) || bidAmount <= 0) {
+    alert("Please enter a valid bid amount.");
+    return;
+  }
 
-    const container = document.getElementById('item-details');
+  const payload = { amount: bidAmount };
+  const token = localStorage.getItem("accessToken");
+  if (!token) {
+    alert("You must be logged in to place a bid.");
+    return;
+  }
 
-    if (!listingData) {
-        container.innerHTML = '<p>Error: Listing details could not be loaded.</p>';
-        return;
+  try {
+    console.log("Submitting bid with payload:", payload);
+
+    const response = await fetch(`https://v2.api.noroff.dev/auction/listings/${itemId}/bids`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+          "X-Noroff-API-Key": "93e47466-52cc-4e67-bf58-91bf2d198526", // Add your API key here
+        },
+        body: JSON.stringify(payload),
+      });
+      
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.errors?.[0]?.message || "Failed to place bid");
     }
 
-    const imageUrl = listingData.media && listingData.media.length > 0 ? listingData.media[0].url : 'https://via.placeholder.com/150';
-    const title = listingData.title || 'No title available';
-    const description = listingData.description || 'No description available.';
-    const endDate = listingData.endsAt ? new Date(listingData.endsAt).toLocaleDateString() : 'No end date';
-
-    // Update the highest bid if bids exist
-    highestBid = listingData._count?.bids || 0;
-
-    container.innerHTML = `
-        <img
-          src="${imageUrl}"
-          alt="${title}"
-          class="w-full h-64 object-cover rounded-md mb-4"
-        />
-        <h2 class="text-3xl font-semibold mb-4">${title}</h2>
-        <p class="text-lg text-gray-700 mb-4">${description}</p>
-        <p class="text-sm text-gray-500">Ends: ${endDate}</p>
-        <p class="text-sm text-gray-500">Current highest bid: ${highestBid}</p>
-    `;
-}
-
-// Handle bid submission
-const bidForm = document.getElementById('bid-form');
-bidForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const bidAmount = document.getElementById('bidAmount').value;
-
-    // Validate the bid amount
-    if (!bidAmount || parseFloat(bidAmount) <= highestBid) {
-        alert(`Your bid must be higher than the current highest bid (${highestBid}).`);
-        return;
-    }
-
-    try {
-        const response = await fetch(`https://v2.api.noroff.dev/auction/listings/${listingId}/bids`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ amount: parseFloat(bidAmount) }),
-        });
-
-        if (!response.ok) {
-            if (response.status === 404) {
-                alert('Listing not found. Please try again.');
-            } else {
-                throw new Error('Failed to place bid');
-            }
-            return;
-        }
-
-        alert('Bid placed successfully!');
-        fetchListingDetails(); // Refresh the item details
-    } catch (error) {
-        console.error('Error placing bid:', error);
-        alert('Error placing bid. Please try again.');
-    }
+    alert("Bid placed successfully!");
+    bidInput.value = ""; // Clear the input field
+    fetchItemDetails(); // Refresh the item details to show the updated highest bid
+  } catch (error) {
+    console.error("Error placing bid:", error);
+    alert(`Error placing bid: ${error.message}`);
+  }
 });
+
+// Fetch item details when the page loads
+fetchItemDetails();

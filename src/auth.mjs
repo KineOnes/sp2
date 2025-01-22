@@ -6,10 +6,10 @@ const authButton = document.getElementById('authButton');
 function updateAuthButton() {
     if (localStorage.getItem('isLoggedIn') === 'true') {
         authButton.textContent = 'Logout'; // Change button to Logout
-        authButton.addEventListener('click', handleLogout);
+        authButton.onclick = handleLogout; // Ensure Logout functionality is added
     } else {
         authButton.textContent = 'Register/Login'; // Default text
-        authButton.addEventListener('click', handleLogin);
+        authButton.onclick = handleLogin; // Ensure Login/Register functionality is added
     }
 }
 
@@ -21,11 +21,13 @@ function handleLogin() {
 // Handle logout
 function handleLogout() {
     localStorage.removeItem('isLoggedIn'); // Clear login flag
+    localStorage.removeItem('accessToken'); // Clear token
+    localStorage.removeItem('username'); // Clear username
     alert('You have been logged out.');
-    updateAuthButton(); // Refresh the button state
+    window.location.href = 'index.html'; // Redirect to the homepage or login page
 }
 
-// Initialize button state when the page loads
+// Automatically call updateAuthButton when the script is loaded
 if (authButton) {
     updateAuthButton();
 }

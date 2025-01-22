@@ -8,12 +8,12 @@
     <link rel="icon" href="path-to-your-favicon.ico" />
 
     <script type="module" src="./src/auth.mjs"></script>
-
+    <script type="module" src="./src/sell.mjs"></script> <!-- Link to the JS file -->
   </head>
   <body class="bg-white text-darkText">
     <!-- Logo -->
     <div class="text-6xl font-light text-center py-4">
-      <a href="index.html">AGAIN</a> <!-- Link added here -->
+      <a href="index.html">AGAIN</a>
     </div>
 
     <!-- Header Section -->
@@ -29,25 +29,28 @@
     <!-- Sell Section -->
     <section class="p-8 max-w-screen-lg mx-auto">
       <h1 class="text-3xl font-semibold mb-6">Sell an Item</h1>
-      <form class="space-y-4">
+      <form id="sellForm" class="space-y-4">
         <div>
           <label for="title" class="block text-lg mb-2">Title</label>
-          <input type="text" id="title" placeholder="Item title" class="w-full bg-white border rounded-md p-2" />
+          <input type="text" id="title" name="title" required placeholder="Item title" class="w-full bg-white border rounded-md p-2" />
         </div>
         <div>
           <label for="description" class="block text-lg mb-2">Description</label>
-          <textarea id="description" rows="4" placeholder="Item description" class="w-full bg-white border rounded-md p-2"></textarea>
+          <textarea id="description" name="description" rows="4" placeholder="Item description" class="w-full bg-white border rounded-md p-2"></textarea>
         </div>
         <div>
           <label for="image" class="block text-lg mb-2">Image URL</label>
-          <input type="text" id="image" placeholder="Image URL" class="w-full bg-white border rounded-md p-2" />
+          <input type="text" id="image" name="image" placeholder="Image URL" class="w-full bg-white border rounded-md p-2" />
         </div>
         <div>
           <label for="deadline" class="block text-lg mb-2">Deadline</label>
-          <input type="datetime-local" id="deadline" class="w-full bg-white border rounded-md p-2" />
+          <input type="datetime-local" id="deadline" name="deadline" required class="w-full bg-white border rounded-md p-2" />
         </div>
         <button type="submit" class="bg-lightBrown text-white px-4 py-2 rounded-md">Submit</button>
       </form>
+      
+      <!-- Message container for errors or success -->
+      <div id="resultMessage" class="mt-4"></div>
     </section>
   </body>
 </html>
