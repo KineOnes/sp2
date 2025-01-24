@@ -23,6 +23,7 @@ function handleLogout() {
     localStorage.removeItem('isLoggedIn'); // Clear login flag
     localStorage.removeItem('accessToken'); // Clear token
     localStorage.removeItem('username'); // Clear username
+    localStorage.removeItem('avatar'); // Clear avatar URL (optional, user-specific)
     alert('You have been logged out.');
     window.location.href = 'index.html'; // Redirect to the homepage or login page
 }
@@ -30,4 +31,18 @@ function handleLogout() {
 // Automatically call updateAuthButton when the script is loaded
 if (authButton) {
     updateAuthButton();
+}
+
+// Utility function to get stored user information
+export function getUserInfo() {
+    return {
+        isLoggedIn: localStorage.getItem('isLoggedIn') === 'true',
+        username: localStorage.getItem('username') || 'Guest',
+        avatar: localStorage.getItem('avatar') || 'https://via.placeholder.com/150', // Default avatar
+    };
+}
+
+// Utility function to save user avatar to localStorage (can be used in profile.mjs)
+export function saveUserAvatar(newAvatarUrl) {
+    localStorage.setItem('avatar', newAvatarUrl);
 }
