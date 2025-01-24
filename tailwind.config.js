@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     "./index.html",    // Root HTML file
-    "./*.html",        // Other HTML files in the root directory
+    "./*.html",        // All HTML files in the root directory
     "./src/**/*.mjs",  // JavaScript/ESM files in the src directory
   ],
   theme: {
@@ -14,10 +14,10 @@ module.exports = {
         darkText: "#333333",    // Text color for headings
       },
       fontSize: {
-        xxl: "3rem",            // Custom font size for "AGAIN" logo
+        xxl: "3rem",            // Custom font size for the "AGAIN" logo
       },
       fontWeight: {
-        thin: "200",            // Thinner font weight for "AGAIN" logo
+        thin: "200",            // Thinner font weight for the "AGAIN" logo
       },
       spacing: {
         128: "32rem",           // Custom spacing
