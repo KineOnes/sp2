@@ -1,61 +1,81 @@
-// Fetch and render listings based on a search query
+// Fetch and render listings
 async function fetchAndRenderListings(query = "") {
     const listingsGrid = document.querySelector("#listingsGrid"); // Listings container
-  
+
     // Clear existing listings
     listingsGrid.innerHTML = "";
-  
+
     try {
-      // Fetch listings from the API
-      const response = await fetch(
-        `https://v2.api.noroff.dev/auction/listings?_active=true&_limit=10&q=${query}`
-      );
-      const data = await response.json();
-  
-      // Handle cases where no listings match the query
-      if (data.data.length === 0) {
-        listingsGrid.innerHTML = `
-          <div class="col-span-full text-center text-gray-500">
-            No results found for "${query}".
-          </div>`;
-        return;
-      }
-  
-      // Render each listing
-      data.data.forEach((listing) => {
-        const listingHTML = `
-          <div class="bg-beige shadow-md rounded-lg overflow-hidden">
-            <img 
-              src="${listing.media?.[0]?.url || "./images/placeholder.png"}" 
-              alt="${listing.media?.[0]?.alt || "No image available"}" 
-              class="w-full h-48 object-cover"
-            />
-            <div class="p-4">
-              <h3 class="text-lg font-semibold">${listing.title}</h3>
-              <p class="text-sm text-gray-600">${listing.description || "No description available"}</p>
-              <p class="text-sm text-gray-500 mt-2">Ends: ${new Date(listing.endsAt).toLocaleDateString()}</p>
-              <button class="bg-lightBrown text-white mt-4 px-4 py-2 rounded-md w-full">View</button>
-            </div>
-          </div>
-        `;
-  
-        listingsGrid.insertAdjacentHTML("beforeend", listingHTML);
-      });
+        // Construct the URL with query
+        const baseUrl = "https://v2.api.noroff.dev/auction/listings";
+        const url = query
+            ? `${baseUrl}/search?q=${encodeURIComponent(query)}`
+            : `${baseUrl}?_active=true&_limit=10`;
+
+        // Fetch listings
+        const response = await fetch(url, {
+            headers: {
+                "Content-Type": "application/json",
+                "X-Noroff-API-Key": "YOUR_API_KEY_HERE", // Replace with your API key
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch listings: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+
+        // Access the correct data property
+        const listings = data.data; // Ensure you're accessing the correct property
+
+        // Handle empty results
+        if (!listings || listings.length === 0) {
+            listingsGrid.innerHTML = `
+                <div class="col-span-full text-center text-gray-500">
+                    ${query ? `No results found for "${query}".` : "No listings available."}
+                </div>`;
+            return;
+        }
+
+        // Render listings
+        listings.forEach((listing) => {
+            const imageUrl = listing.media?.[0]?.url || "./images/placeholder.png";
+            const endsAt = listing.endsAt ? new Date(listing.endsAt).toLocaleDateString() : "No deadline";
+
+            const listingHTML = `
+                <div class="bg-beige shadow-md rounded-lg overflow-hidden">
+                    <img 
+                        src="${imageUrl}" 
+                        alt="${listing.title || "No title"}" 
+                        class="w-full h-48 object-cover"
+                    />
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold">${listing.title || "No Title"}</h3>
+                        <p class="text-sm text-gray-600">${listing.description || "No description available"}</p>
+                        <p class="text-sm text-gray-500 mt-2">Ends: ${endsAt}</p>
+                        <button class="bg-lightBrown text-white mt-4 px-4 py-2 rounded-md w-full">
+                            View
+                        </button>
+                    </div>
+                </div>
+            `;
+            listingsGrid.insertAdjacentHTML("beforeend", listingHTML);
+        });
     } catch (error) {
-      console.error("Error fetching listings:", error);
-      listingsGrid.innerHTML = `
-        <div class="col-span-full text-center text-red-500">
-          Error fetching listings. Please try again later.
-        </div>`;
+        console.error("Error fetching listings:", error);
+        listingsGrid.innerHTML = `
+            <div class="col-span-full text-center text-red-500">
+                Error fetching listings. Please try again later.
+            </div>`;
     }
-  }
-  
-  // Attach an event listener to the search input
-  document.querySelector("#searchInput").addEventListener("input", (event) => {
+}
+
+// Search input event listener
+document.querySelector("#searchInput").addEventListener("input", (event) => {
     const query = event.target.value.trim();
     fetchAndRenderListings(query);
-  });
-  
-  // Initial fetch to display all listings on page load
-  fetchAndRenderListings();
-  
+});
+
+// Initial fetch
+fetchAndRenderListings();
