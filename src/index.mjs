@@ -74,7 +74,7 @@ function renderListings(listings) {
   });
 }
 
-// Add event listener to search input
+ //Add event listener to search input
 document.getElementById("searchInput").addEventListener("keyup", (event) => {
   const searchQuery = event.target.value.trim();
   fetchListings(searchQuery, 6); // Fetch listings with the search query
