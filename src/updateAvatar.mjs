@@ -1,58 +1,40 @@
-import { API_BASE_URL } from "./config.mjs"; // API base URL
-import { getAuthToken, getProfileName } from "./auth.mjs"; // Helper functions
-
-const avatarForm = document.getElementById("avatarForm");
-const avatarMessage = document.getElementById("avatarMessage");
-
-// Function to update avatar
-async function updateAvatar(url) {
-  try {
-    const profileName = getProfileName(); // Get logged-in user's name
-    const token = getAuthToken(); // Get auth token
-
-    if (!profileName || !token) {
-      throw new Error("User not logged in or session expired.");
+export async function updateAvatar(avatarUrl) {
+    const token = localStorage.getItem('accessToken');
+    const username = localStorage.getItem('username');
+    const apiKey = '93e47466-52cc-4e67-bf58-91bf2d198526';
+  
+    // Validate session
+    if (!token || !username) {
+      throw new Error('You must be logged in to update the avatar.');
     }
-
-    const response = await fetch(`${API_BASE_URL}/auction/profiles/${profileName}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        avatar: { url },
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Failed to update avatar: ${response.statusText}`);
+  
+    try {
+      // Make API request to update avatar
+      const response = await fetch(`https://v2.api.noroff.dev/auction/profiles/${username}`, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'X-Noroff-API-Key': apiKey,
+        },
+        body: JSON.stringify({
+          avatar: {
+            url: avatarUrl,
+            alt: `${username}'s avatar`,
+          },
+        }),
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Error from API:', errorData);
+        throw new Error(errorData.errors?.[0]?.message || 'Failed to update avatar.');
+      }
+  
+      return await response.json(); // Return the updated profile data
+    } catch (error) {
+      console.error('Error updating avatar:', error.message);
+      throw error;
     }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error updating avatar:", error);
-    throw error;
   }
-}
-
-// Handle form submission
-avatarForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-
-  const avatarUrl = document.getElementById("avatarUrl").value.trim();
-
-  avatarMessage.textContent = "Updating avatar...";
-  avatarMessage.className = "text-gray-700";
-
-  try {
-    await updateAvatar(avatarUrl);
-    avatarMessage.textContent = "Avatar updated successfully!";
-    avatarMessage.className = "text-green-500";
-    avatarForm.reset();
-  } catch {
-    avatarMessage.textContent = "Failed to update avatar. Please try again.";
-    avatarMessage.className = "text-red-500";
-  }
-});
+  

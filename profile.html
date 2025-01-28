@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile</title>
     <link href="./output.css" rel="stylesheet" />
-    <link rel="icon" href="path-to-your-favicon.ico" />
-
+    <link rel="icon" href="./images/favicon.ico" />
     <script type="module" src="./src/auth.mjs"></script>
     <script type="module" src="./src/profile.mjs"></script>
   </head>
@@ -44,46 +43,30 @@
           <p id="userCredit" class="text-lg">Total credit: 1000</p>
         </div>
       </div>
-      <!-- Buttons -->
-      <div class="flex justify-between mt-6">
-        <button
-          id="editProfile"
-          class="bg-lightBrown text-white px-4 py-2 rounded-md"
-        >
-          Edit
-        </button>
-        <button
-          id="createListing"
-          class="bg-lightBrown text-white px-4 py-2 rounded-md"
-        >
-          Create listing
-        </button>
-      </div>
     </section>
-    <section class="max-w-screen-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold mb-4">Update Avatar</h2>
-        <form id="avatarForm" class="space-y-4">
-          <div>
-            <label for="avatarUrl" class="block text-gray-700 font-medium mb-1">Avatar URL</label>
-            <input
-              type="url"
-              id="avatarUrl"
-              class="w-full p-2 border border-gray-300 rounded-lg"
-              placeholder="Enter new avatar URL"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            class="w-full bg-lightBrown text-white py-2 rounded-md hover:bg-opacity-90"
-          >
-            Update Avatar
-          </button>
-        </form>
-        <div id="avatarMessage" class="mt-4 text-center"></div>
-      </section>
-      
 
-    
+    <!-- Update Avatar Section -->
+    <section class="max-w-screen-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
+      <h2 class="text-2xl font-bold mb-4">Update Avatar</h2>
+      <form id="avatarForm" class="space-y-4">
+        <div>
+          <label for="avatarUrl" class="block text-gray-700 font-medium mb-1">Avatar URL</label>
+          <input
+            type="url"
+            id="avatarUrl"
+            class="w-full p-2 border border-gray-300 rounded-lg"
+            placeholder="Enter new avatar URL"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-lightBrown text-white py-2 rounded-md hover:bg-opacity-90"
+        >
+          Update Avatar
+        </button>
+      </form>
+      <div id="avatarMessage" class="mt-4 text-center"></div>
+    </section>
   </body>
 </html>

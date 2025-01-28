@@ -54,7 +54,9 @@ async function fetchAndRenderListings(query = "") {
                         <h3 class="text-lg font-semibold">${listing.title || "No Title"}</h3>
                         <p class="text-sm text-gray-600">${listing.description || "No description available"}</p>
                         <p class="text-sm text-gray-500 mt-2">Ends: ${endsAt}</p>
-                        <button class="bg-lightBrown text-white mt-4 px-4 py-2 rounded-md w-full">
+                        <button 
+                            class="view-button bg-lightBrown text-white mt-4 px-4 py-2 rounded-md w-full" 
+                            data-id="${listing.id}">
                             View
                         </button>
                     </div>
@@ -70,6 +72,18 @@ async function fetchAndRenderListings(query = "") {
             </div>`;
     }
 }
+
+// Handle "View" button click using event delegation
+document.querySelector("#listingsGrid").addEventListener("click", (event) => {
+    const target = event.target;
+    if (target.classList.contains("view-button")) {
+        const listingId = target.dataset.id;
+        if (listingId) {
+            // Redirect to item.html with the listing ID as a query parameter
+            window.location.href = `item.html?id=${listingId}`;
+        }
+    }
+});
 
 // Search input event listener
 document.querySelector("#searchInput").addEventListener("input", (event) => {

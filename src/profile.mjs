@@ -7,21 +7,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   try {
     const userData = await getUserData(); // Fetch user data
+    if (!userData) {
+      throw new Error('No user data returned');
+    }
     userName.textContent = userData.name || 'Name Nameson';
     userCredit.textContent = `Total credit: ${userData.credits || 0}`;
     avatar.src = userData.avatar?.url || 'https://via.placeholder.com/150';
     avatar.alt = userData.avatar?.alt || 'User avatar';
   } catch (error) {
     console.error('Error fetching user data:', error);
-    alert('Could not load profile data.');
+    alert('Could not load profile data. Please log in again.');
+    window.location.href = 'login.html'; // Redirect to login page
   }
-});
-
-// Handle buttons
-document.getElementById('editProfile').addEventListener('click', () => {
-  alert('Edit Profile functionality coming soon!');
-});
-
-document.getElementById('createListing').addEventListener('click', () => {
-  window.location.href = 'sell.html';
 });
