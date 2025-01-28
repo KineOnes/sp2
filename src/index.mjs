@@ -1,5 +1,3 @@
-console.log("index.mjs loaded");
-
 // Function to fetch and render new listings
 async function fetchListings(searchQuery = "", limit = 6) {
   try {

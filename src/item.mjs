@@ -1,8 +1,5 @@
-console.log("item.mjs loaded");
-
 // Get the item ID from the URL
 const itemId = new URLSearchParams(window.location.search).get("id");
-console.log("Item ID:", itemId); // Ensure the ID is logged for debugging
 
 const itemContainer = document.querySelector("#item-details");
 const bidForm = document.querySelector("#bid-form");
@@ -73,8 +70,7 @@ bidForm.addEventListener("submit", async (event) => {
   }
 
   try {
-    console.log("Submitting bid with payload:", payload);
-
+    
     const response = await fetch(`https://v2.api.noroff.dev/auction/listings/${itemId}/bids`, {
         method: "POST",
         headers: {

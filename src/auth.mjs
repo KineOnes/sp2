@@ -1,5 +1,3 @@
-console.log('Auth script loaded'); // Debugging: Check if the script is running
-
 const authButton = document.getElementById('authButton');
 
 // Function to check login state and update the button
