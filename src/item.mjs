@@ -66,7 +66,7 @@ bidForm.addEventListener("submit", async (event) => {
   }
 
   const payload = { amount: bidAmount };
-  const token = localStorage.getItem("accessToken");
+  const token = localStorage.getItem("authToken");
   if (!token) {
     alert("You must be logged in to place a bid.");
     return;

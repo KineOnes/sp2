@@ -17,7 +17,7 @@ sellForm.addEventListener("submit", async (event) => {
     return;
   }
 
-  const token = localStorage.getItem("accessToken");
+  const token = localStorage.getItem("authToken");
   if (!token) {
     resultMessage.textContent = "Error: You must be logged in to create a listing.";
     resultMessage.className = "text-red-500";

@@ -47,9 +47,17 @@ export function saveUserAvatar(newAvatarUrl) {
     localStorage.setItem('avatar', newAvatarUrl);
 }
 
+export function setAuthToken(token) {
+    localStorage.setItem('authToken', token);
+}
+
 // Function to retrieve the authentication token
 export function getAuthToken() {
     return localStorage.getItem('authToken');
+}
+
+export function setProfileName(name) {
+  localStorage.setItem('profileName', name);
 }
 
 // Function to retrieve the profile name of the logged-in user

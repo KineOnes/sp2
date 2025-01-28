@@ -1,6 +1,8 @@
+import { API_BASE_URL } from './config.mjs'; // Import API base URL
+
 export async function updateAvatar(avatarUrl) {
-    const token = localStorage.getItem('accessToken');
-    const username = localStorage.getItem('username');
+    const token = localStorage.getItem('authToken');
+    const username = localStorage.getItem('profileName');
     const apiKey = '93e47466-52cc-4e67-bf58-91bf2d198526';
   
     // Validate session
@@ -10,7 +12,7 @@ export async function updateAvatar(avatarUrl) {
   
     try {
       // Make API request to update avatar
-      const response = await fetch(`https://v2.api.noroff.dev/auction/profiles/${username}`, {
+      const response = await fetch(`${API_BASE_URL}/auction/profiles/${username}`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,

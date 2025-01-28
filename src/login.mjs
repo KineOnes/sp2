@@ -1,3 +1,5 @@
+import { setAuthToken, setProfileName } from './auth.mjs';
+
 export async function handleLogin(event) {
     event.preventDefault(); // Prevent the default form submission behavior
 
@@ -31,15 +33,15 @@ export async function handleLogin(event) {
         if (!data.data || !data.data.accessToken || !data.data.name) {
             throw new Error('Invalid API response: Missing accessToken or name');
         }
-
+        
         // Save the access token, username, and login state in localStorage
-        localStorage.setItem('accessToken', data.data.accessToken); // Save the token
+        setAuthToken(data.data.accessToken);
         console.log('Token saved in localStorage:', data.data.accessToken); // Log token
 
         localStorage.setItem('isLoggedIn', 'true'); // Indicate that the user is logged in
         console.log('Login state saved in localStorage: true'); // Log login state
 
-        localStorage.setItem('username', data.data.name); // Save the username for future use
+        setProfileName(data.data.name);
         console.log('Username saved in localStorage:', data.data.name); // Log username
 
         alert('Login successful'); // Notify the user of a successful login
