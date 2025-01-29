@@ -1,5 +1,3 @@
-console.log("sell.mjs loaded"); // Debugging
-
 const sellForm = document.getElementById("sellForm");
 const resultMessage = document.getElementById("resultMessage");
 

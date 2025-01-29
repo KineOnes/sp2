@@ -29,7 +29,6 @@ export async function updateAvatar(avatarUrl) {
   
       if (!response.ok) {
         const errorData = await response.json();
-        console.error('Error from API:', errorData);
         throw new Error(errorData.errors?.[0]?.message || 'Failed to update avatar.');
       }
   

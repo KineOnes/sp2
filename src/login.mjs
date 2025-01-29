@@ -26,9 +26,6 @@ export async function handleLogin(event) {
         // Parse the JSON response
         const data = await response.json();
 
-        // Log the entire API response for debugging
-        console.log('API Response:', data);
-
         // Check if the expected fields are present
         if (!data.data || !data.data.accessToken || !data.data.name) {
             throw new Error('Invalid API response: Missing accessToken or name');
@@ -36,13 +33,10 @@ export async function handleLogin(event) {
         
         // Save the access token, username, and login state in localStorage
         setAuthToken(data.data.accessToken);
-        console.log('Token saved in localStorage:', data.data.accessToken); // Log token
 
         localStorage.setItem('isLoggedIn', 'true'); // Indicate that the user is logged in
-        console.log('Login state saved in localStorage: true'); // Log login state
 
         setProfileName(data.data.name);
-        console.log('Username saved in localStorage:', data.data.name); // Log username
 
         alert('Login successful'); // Notify the user of a successful login
 
