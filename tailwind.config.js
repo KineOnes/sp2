@@ -10,6 +10,7 @@ module.exports = {
       colors: {
         beige: "#F6F0E5",       // Background for listings
         olive: "#A8B885",       // Search bar background
+        lightOlive: "#D4DEC2",  // Lighter version of olive
         lightBrown: "#C4B29B",  // Button background
         darkText: "#333333",    // Text color for headings
       },
