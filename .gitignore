@@ -1,0 +1,10 @@
+# Ignore node_modules
+node_modules/
+
+# Ignore build and output directories
+dist/
+
+# Ignore OS and editor specific files
+.DS_Store
+.vscode/
+.idea/
