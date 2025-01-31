@@ -1,5 +1,14 @@
-# sp2
-Repo for my Semester Project 2 in front-end development.
+# Semester Project 2, Auction site "AGAIN"
+
+
+![AGAIN Auction Website](images/againReadme.png)
+
+Goal for this project:
+To take the skills learned over the past three semesters and create an auction website.
+
+Project Description: 
+The AGAIN Auction Platform is a web application that allows users to list items for auction and bid on items from other users. New users start with 1000 credits to use on the platform. The frontend is built with Tailwind CSS and JavaScript, while all backend interactions are handled via the provided API.
+
 
 
 
