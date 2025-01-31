@@ -56,15 +56,15 @@ To run the project locally:
 Or open index.html in a browser using Live Server.
 
 
-Links: 
+## Links: 
 
-Gannt chart in Github Project: https://github.com/users/KineOnes/projects/1/views/2
+- Gannt chart in Github Project: https://github.com/users/KineOnes/projects/1/views/2
 
-Gannt chart in excel (Addition for myself for color sorting): https://noroff-my.sharepoint.com/:x:/g/personal/kinver22534_stud_noroff_no/EfGuwb_ELc9MvkJW85TI3iQBesn8tYNsxUCmWmDnsAh3PQ?e=RXdmKH
+- Gannt chart in excel (Addition for myself for color sorting): https://noroff-my.sharepoint.com/:x:/g/personal/kinver22534_stud_noroff_no/EfGuwb_ELc9MvkJW85TI3iQBesn8tYNsxUCmWmDnsAh3PQ?e=RXdmKH
 
-Netlify link: https://again-auction-site.netlify.app/
+- Netlify link: https://again-auction-site.netlify.app/
 
-Figma link to prototype: https://www.figma.com/design/529foYlVrof5dpnz2R68TD/Untitled?node-id=0-1&t=nlN0cUOVjIiwb9EE-1
+- Figma link to prototype: https://www.figma.com/design/529foYlVrof5dpnz2R68TD/Untitled?node-id=0-1&t=nlN0cUOVjIiwb9EE-1
 
-Trello board link: https://trello.com/invite/b/679a07543359d654a6c135d9/ATTIc5c58d94dd801d9be297f6db5eab3d739DA55CD9/sp2-auction-site / https://trello.com/b/oHPPp421/sp2-auction-site
+- Trello board link: https://trello.com/invite/b/679a07543359d654a6c135d9/ATTIc5c58d94dd801d9be297f6db5eab3d739DA55CD9/sp2-auction-site / https://trello.com/b/oHPPp421/sp2-auction-site
 
