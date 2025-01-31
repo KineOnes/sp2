@@ -9,8 +9,8 @@ module.exports = {
     extend: {
       colors: {
         beige: "#F6F0E5",       // Background for listings
-        olive: "#A8B885",       // Search bar background
-        lightOlive: "#C4D99F",  // Lighter version of olive
+        olive: "#4A5B21",       // Login button background
+        lightOlive: "#A8B88D",  // Search bar background
         lightBrown: "#C4B29B",  // Button background
         darkText: "#333333",    // Text color for headings
       },
