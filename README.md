@@ -10,6 +10,8 @@ To take the skills learned over the past three semesters and create an auction w
 The AGAIN Auction Platform is a web application that allows users to list items for auction and bid on items from other users. New users start with 1000 credits to use on the platform.
 The frontend is built with **Tailwind CSS** and **JavaScript**, while all backend interactions are handled via the **Noroff API**.
 
+Full brief & requirements at : https://content.noroff.dev/semester-project-2/brief.html
+
 ## 🛠️ Technologies Used
 - **Frontend:** HTML, CSS (Tailwind), JavaScript
 - **Backend:** Noroff API
@@ -49,11 +51,9 @@ To run the project locally:
 3. Run the development server:
 
     ```sh
-    Copy
-    Edit
     npm run dev
     ```
-
+Or open index.html in a browser using Live Server.
 
 
 Links: 
