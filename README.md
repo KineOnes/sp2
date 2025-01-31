@@ -3,12 +3,56 @@
 
 ![AGAIN Auction Website](images/againReadme.png)
 
-Goal for this project:
+## 🎯 Goal
 To take the skills learned over the past three semesters and create an auction website.
 
-Project Description: 
-The AGAIN Auction Platform is a web application that allows users to list items for auction and bid on items from other users. New users start with 1000 credits to use on the platform. The frontend is built with Tailwind CSS and JavaScript, while all backend interactions are handled via the provided API.
+## 📖 Project Description
+The AGAIN Auction Platform is a web application that allows users to list items for auction and bid on items from other users. New users start with 1000 credits to use on the platform.
+The frontend is built with **Tailwind CSS** and **JavaScript**, while all backend interactions are handled via the **Noroff API**.
 
+## 🛠️ Technologies Used
+- **Frontend:** HTML, CSS (Tailwind), JavaScript
+- **Backend:** Noroff API
+- **Tools & Libraries:** GitHub Projects, Figma (for design), Netlify (for hosting)
+
+## 🚀 Live Demo
+🔗 **Live Site:** [https://again-auction-site.netlify.app/](https://again-auction-site.netlify.app/)
+
+## Built With
+
+### Main Technologies
+- HTML5 - Structure and content
+- CSS (Tailwind) - Styling and layout
+- JavaScript - Dynamic functionality
+- Node.js - Package management
+
+### Development & Tooling
+- ESLint - Linting for consistent code
+- Prettier - Code formatting
+- Live Server - Local development server
+
+## 🛠️ Installation & Setup
+To run the project locally:
+
+1. **Clone the Repository**  
+   ```sh
+   git clone https://github.com/KineOnes/sp2.git
+   cd sp2
+   ```
+
+2. Install the dependencies:
+
+    ```bash
+    npm install
+    ```
+
+3. Run the development server:
+
+    ```sh
+    Copy
+    Edit
+    npm run dev
+    ```
 
 
 
