@@ -9,10 +9,12 @@ module.exports = {
     extend: {
       colors: {
         beige: "#F6F0E5",       // Background for listings
+        brown: "#6A5D4D",       // Darker cool brown, twice as dark as lightBrown
         olive: "#4A5B21",       // Login button background
         lightOlive: "#A8B88D",  // Search bar background
         lightBrown: "#C4B29B",  // Button background
         darkText: "#333333",    // Text color for headings
+        mediumBrown: "#947F68", // A balanced brown between lightBrown and dark brown
       },
       fontSize: {
         xxl: "3rem",            // Custom font size for the "AGAIN" logo

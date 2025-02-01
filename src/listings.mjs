@@ -55,7 +55,7 @@ async function fetchAndRenderListings(query = "") {
                         <p class="text-sm text-gray-600">${listing.description || "No description available"}</p>
                         <p class="text-sm text-gray-500 mt-2">Ends: ${endsAt}</p>
                         <button 
-                            class="view-button bg-lightBrown text-white mt-4 px-4 py-2 rounded-md w-full" 
+                            class="view-button bg-mediumBrown text-white mt-4 px-4 py-2 rounded-md w-full" 
                             data-id="${listing.id}">
                             View
                         </button>

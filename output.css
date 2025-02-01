@@ -815,6 +815,11 @@ video {
   background-color: rgb(246 240 229 / var(--tw-bg-opacity, 1));
 }
 
+.bg-brown {
+  --tw-bg-opacity: 1;
+  background-color: rgb(106 93 77 / var(--tw-bg-opacity, 1));
+}
+
 .bg-lightBrown {
   --tw-bg-opacity: 1;
   background-color: rgb(196 178 155 / var(--tw-bg-opacity, 1));
@@ -833,6 +838,11 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+.bg-mediumBrown {
+  --tw-bg-opacity: 1;
+  background-color: rgb(148 127 104 / var(--tw-bg-opacity, 1));
 }
 
 .object-cover {
@@ -934,6 +944,16 @@ video {
   font-weight: 600;
 }
 
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.text-brown {
+  --tw-text-opacity: 1;
+  color: rgb(106 93 77 / var(--tw-text-opacity, 1));
+}
+
 .text-darkText {
   --tw-text-opacity: 1;
   color: rgb(51 51 51 / var(--tw-text-opacity, 1));
@@ -969,11 +989,6 @@ video {
   color: rgb(34 197 94 / var(--tw-text-opacity, 1));
 }
 
-.text-lightBrown {
-  --tw-text-opacity: 1;
-  color: rgb(196 178 155 / var(--tw-text-opacity, 1));
-}
-
 .text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity, 1));
@@ -982,6 +997,11 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.text-mediumBrown {
+  --tw-text-opacity: 1;
+  color: rgb(148 127 104 / var(--tw-text-opacity, 1));
 }
 
 .shadow-md {
