@@ -10,7 +10,8 @@ module.exports = {
       colors: {
         beige: "#F6F0E5",       // Background for listings
         brown: "#6A5D4D",       // Darker cool brown, twice as dark as lightBrown
-        olive: "#4A5B21",       // Login button background
+        burntPeach: "#B76E50",  // Login/register button bakcground. Muted, earthy peach
+        olive: "#4A5B21",       // alternative color for numbers in design
         lightOlive: "#A8B88D",  // Search bar background
         lightBrown: "#C4B29B",  // Button background
         darkText: "#333333",    // Text color for headings
