@@ -31,15 +31,18 @@
     </header>
 
     <!-- Search Bar -->
-    <section class="flex justify-center p-4">
+    <section class="flex flex-col items-center p-4">
+      <label for="searchInput" class="text-lg font-semibold mb-2">Search Listings</label>
       <div class="relative w-full max-w-xl">
         <input
           type="text"
           id="searchInput"
           placeholder="Search listings..."
-          class="w-full bg-beige text-darkText border rounded-md p-2 pl-10"
+          class="w-full bg-beige text-darkText border rounded-md py-3 pl-10 pr-4"
         />
-        <span class="absolute left-3 top-2.5 text-gray-700">🔍</span>
+        <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-700">
+          🔍
+        </span>
       </div>
     </section>
 
